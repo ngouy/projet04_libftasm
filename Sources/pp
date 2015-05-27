@@ -1,0 +1,25 @@
+section .data
+null:
+	.string db "(null)"
+	.len equ $ - null.string
+
+section .text
+	extern _ft_strlen
+	global _ft_puts
+
+_ft_puts:
+	push rdi
+	call _ft_strlen
+	pop rdi
+	ret
+	je label0
+	repne scasb
+
+
+label0:
+	mov rdi, 1
+	mov rsi, null.string
+	mov rdx, null.len
+	mov rax, 0x000004
+	syscall
+	ret

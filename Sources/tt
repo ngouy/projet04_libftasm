@@ -1,0 +1,20 @@
+section .text
+	global _ft_strdup
+	extern _ft_memcpy
+	extern _ft_strlen
+	extern _malloc
+
+_ft_strdup:
+	lea r9, [rel rdi]
+	push rdi
+	call _ft_strlen
+	pop rdi
+	add rax, 1
+	mov r12, rax
+	mov rdi, rax
+	call _malloc
+	lea rdi, [rel, rax]
+	mov rsi, r9
+	mov rcx, r12
+	call _ft_memcpy
+	ret
